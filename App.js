@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { enableScreens } from 'react-native-screens'
-import { StyleSheet, Text, View } from 'react-native'
+import { View, StatusBar } from 'react-native'
 import * as Font from 'expo-font'
 import AppLoading from 'expo-app-loading'
 
 import MealsNavigator from './navigation/MealsNavigator'
 
-enableScreens()
+// enableScreens()
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -18,13 +18,18 @@ const fetchFonts = () => {
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false)
 
+  console.ignoreLogs = ['Warning: Each', 'Warning: Failed']
+
   if (!fontLoaded) {
     return (
-      <AppLoading
-        startAsync={fetchFonts}
-        onFinish={() => setFontLoaded(true)}
-        onError={(err) => console.log(err)}
-      />
+      <View>
+        <StatusBar barStyle='light-content' />
+        <AppLoading
+          startAsync={fetchFonts}
+          onFinish={() => setFontLoaded(true)}
+          onError={(err) => console.log(err)}
+        />
+      </View>
     )
   }
 
