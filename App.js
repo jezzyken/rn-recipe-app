@@ -19,6 +19,7 @@ export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false)
 
   console.ignoreLogs = ['Warning: Each', 'Warning: Failed']
+  console.disableYellowBox = true
 
   if (!fontLoaded) {
     return (
